@@ -1,0 +1,40 @@
+{
+  "klienci": [
+    {
+      "nazwa": "Agnieszka Sz", 
+      "haslo": "aga", 
+      "telefon": "999777555", 
+      "idlokalizacji": "5", 
+      "idklienta": "aga", 
+      "email": "aga@gmail.com"
+    }, 
+    {
+      "nazwa": "Piotrek K", 
+      "haslo": "piotr", 
+      "telefon": "555777999", 
+      "idlokalizacji": "6", 
+      "idklienta": "piotr", 
+      "email": "piter@gmail.com"
+    }
+  ], 
+  "zamowienia": [
+    {
+      "zaplacone": "true", 
+      "idkompozycji": "buk3", 
+      "uwagi": "Odbior osobisty", 
+      "idzamowienia": "1", 
+      "idterminu": "5", 
+      "cena": "25", 
+      "idodbiorcy": "aga"
+    }, 
+    {
+      "zaplacone": "true", 
+      "idkompozycji": "buk5", 
+      "uwagi": "Brak uwag", 
+      "idzamowienia": "2", 
+      "idterminu": "6", 
+      "cena": "45", 
+      "idodbiorcy": "piotr"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public abstract class CommandHandler {
-	public static String DATABASE = "C://Users//piotr//Desktop//db.json";
+	public static String DATABASE = "db.json";
 
 	private static Schema schema;
 	public abstract String process(String line);
