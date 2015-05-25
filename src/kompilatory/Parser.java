@@ -1,14 +1,26 @@
 package kompilatory;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Parser {
+	
+	private CommandHandler commandHandler = null;
 
+	public Parser(){
+		try {
+			CommandHandler.loadSchema();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void readLine() {
 		Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
         System.out.println(line);
-        
+        processCommand(line);
         scanner.close();
 	}
 	
@@ -20,8 +32,7 @@ public class Parser {
 	public String processCommand(String line){
 		String result = null;
 		String [] words = line.split(" ");
-		CommandHandler commandHandler = null;
-
+		
 		switch(words[0].toLowerCase()){
 			case "select":
 				
@@ -38,7 +49,7 @@ public class Parser {
 			case "drop" :
 				break;
 		}
-		try{
+		try{	
 			result = commandHandler.process(line);
 		}
 		catch (Exception e){
