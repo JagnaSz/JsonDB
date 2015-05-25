@@ -12,6 +12,15 @@ public abstract class CommandHandler {
 	public static String DATABASE = "db.json";
 
 	private static Schema schema;
+	
+	public static Schema getSchema() {
+		return schema;
+	}
+
+	public static void setSchema(Schema schema) {
+		CommandHandler.schema = schema;
+	}
+
 	public abstract String process(String line);
 
 	public static void loadSchema() throws FileNotFoundException{
@@ -38,7 +47,7 @@ public abstract class CommandHandler {
 	}
 
 	private static void parseTable(String object) {
-		System.out.println("TABLES "  + object);
+//		System.out.println("TABLES "  + object);
 		StringBuilder key = new StringBuilder();
 		for(int i=0;i<object.length();i++){
 			if('"' == object.charAt(i)){
@@ -54,7 +63,6 @@ public abstract class CommandHandler {
 					i++;
 				}
 				int end = findEnd(object.substring(i+1), '[', ']');
-				System.out.println("key " + key);
 				List<Map<String,String> > array = parseArray(object.substring(i+1, (int)end+i));
 				schema.addTable(key, array);
 				i += end;
@@ -63,7 +71,7 @@ public abstract class CommandHandler {
 	}
 
 	private static List<Map<String,String> > parseArray(String input) {
-		System.out.println("RECORDS " + input);
+//		System.out.println("RECORDS " + input);
 		List<Map<String,String> > array= new ArrayList<Map<String,String> >();
 		for(int i=0;i<input.length();i++){
 			if('{'== input.charAt(i)){
@@ -77,7 +85,7 @@ public abstract class CommandHandler {
 	}
 
 	private static Map<String,String> parseRecord(String input){
-		System.out.println("RECORD " + input);
+//		System.out.println("RECORD " + input);
 		Map<String,String> record = new HashMap<String, String>();
 		StringBuilder key = new StringBuilder();
 		StringBuilder value = new StringBuilder();
