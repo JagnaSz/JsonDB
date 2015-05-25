@@ -7,6 +7,14 @@ public class Parser {
 	
 	private CommandHandler commandHandler = null;
 
+	public CommandHandler getCommandHandler() {
+		return commandHandler;
+	}
+
+	public void setCommandHandler(CommandHandler commandHandler) {
+		this.commandHandler = commandHandler;
+	}
+
 	public Parser(){
 		try {
 			CommandHandler.loadSchema();
