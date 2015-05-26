@@ -59,6 +59,7 @@ public class Parser {
 		}
 		try{	
 			result = commandHandler.process(line);
+			CommandHandler.saveSchema();
 		}
 		catch (Exception e){
 			e.printStackTrace();

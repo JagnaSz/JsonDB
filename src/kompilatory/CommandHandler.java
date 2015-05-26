@@ -2,6 +2,7 @@ package kompilatory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,12 @@ public abstract class CommandHandler {
 		parseToSchema(all);
 
 		in.close();
+	}
+	
+	public static void saveSchema() throws FileNotFoundException{
+		PrintWriter output = new PrintWriter(DATABASE);
+		output.write(schema.toString());
+		output.close();		
 	}
 
 	private static void parseToSchema(StringBuilder all) {

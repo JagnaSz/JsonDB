@@ -1,6 +1,8 @@
 package kompilatory;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Schema {
 	private Map<String, List<Map<String, String>>> schema;
@@ -17,6 +19,7 @@ public class Schema {
 		this.schema = schema;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public String toString() {
 
@@ -48,6 +51,7 @@ public class Schema {
 		return builder.toString();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void parseValues(StringBuilder builder, List<Map<String, String>> lista) {
 
 		for (int i =0; i < lista.size(); i++) {
