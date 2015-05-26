@@ -113,6 +113,27 @@ public class Schema {
 		}
 		schema.get(table).add(record);
 		return true;
+	}
+
+	/**
+	 * create table
+	 * @param tableName
+	 * @param columnes
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean createTable(String tableName, String[] columnes) throws SQLException {
+		if(schema.containsKey(tableName))
+			throw new SQLException("table " + tableName + " alreadyExist");
+		else{
+			Map<String,String> record = new HashMap<String, String>();
+			for(int i=0;i<columnes.length;i++)
+				record.put(columnes[i], "");
+			List<Map<String,String> > records = new ArrayList<Map<String,String>>();
+			records.add(record);
+			schema.put(tableName, records);
+		}
+		return false;
 	}	
 	
 }
