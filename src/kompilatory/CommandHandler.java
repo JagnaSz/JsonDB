@@ -3,17 +3,20 @@ package kompilatory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import kompilatory.exception.SyntaxError;
+
 public abstract class CommandHandler {
 	public static String DATABASE = "db.json";
 	//public static String DATABASE = "C://Users//piotr//Desktop//db.json";
 
-	private static Schema schema;
+	protected static Schema schema;
 	
 	public static Schema getSchema() {
 		return schema;
@@ -23,7 +26,7 @@ public abstract class CommandHandler {
 		CommandHandler.schema = schema;
 	}
 
-	public abstract String process(String line);
+	public abstract String process(String line) throws SyntaxError, SQLException;
 
 	public static void loadSchema() throws FileNotFoundException{
 		Scanner in = new Scanner(new File(DATABASE));
@@ -120,7 +123,7 @@ public abstract class CommandHandler {
 		}
 		return record;
 	}
-	private static int findEnd(String text, char left, char right) {
+	protected static int findEnd(String text, char left, char right) {
 		int count = 1;
 		for(int i=0;i<text.length();i++){
 			if(left == text.charAt(i))

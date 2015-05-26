@@ -1,5 +1,7 @@
 package kompilatory;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,6 +84,35 @@ public class Schema {
 
 	public void addTable(StringBuilder key, List<Map<String, String>> array) {
 		schema.put(key.toString(), array);
+	}
+
+	/**
+	 * insert to table in schema. If column == null then it's take from table
+	 * 
+	 * @param table
+	 * @param columns
+	 * @param values
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean insert(String table, List<String> columns, List<String> values) throws SQLException {
+		if(!schema.containsKey(table))
+			throw new SQLException("table: "+table + " doesn't exist");
+		List<String> validColumnes = new ArrayList<String>(schema.get(table).get(0).keySet());
+		if(columns == null){
+			columns = new ArrayList<String>(schema.get(table).get(0).keySet());		
+		}		
+		Map<String, String> record = new HashMap<String, String>();
+		for(int i=0;i<validColumnes.size();i++){
+			if(validColumnes.get(i).isEmpty())
+				validColumnes.remove(i);
+			if(columns.contains(validColumnes.get(i)))
+				record.put(validColumnes.get(i), values.get(columns.indexOf(validColumnes.get(i))));
+			else
+				record.put(validColumnes.get(i), "");
+		}
+		schema.get(table).add(record);
+		return true;
 	}	
 	
 }
