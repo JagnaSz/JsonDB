@@ -96,7 +96,7 @@ public abstract class CommandHandler {
 	}
 
 	private static Map<String,String> parseRecord(String input){
-//		System.out.println("RECORD " + input);
+	//	System.out.println("RECORD " + input);
 		Map<String,String> record = new HashMap<String, String>();
 		StringBuilder key = new StringBuilder();
 		StringBuilder value = new StringBuilder();

@@ -135,5 +135,42 @@ public class Schema {
 		}
 		return false;
 	}	
-	
+
+
+	public String select(String [] columns, String table) throws SQLException {
+		if(!schema.containsKey(table))
+			throw new SQLException("table: "+table + " doesn't exist");
+
+		StringBuilder result = new StringBuilder();
+
+		List<String> validColumnes = new ArrayList<String>(schema.get(table).get(0).keySet());
+		List<Map<String, String>> lista = schema.get(table);
+
+		for(String column: columns){
+			if( (columns.length == 1 )&& column.equals("*")) {
+				for(String col : validColumnes) {
+					result.append(col).append("\r\n");
+					for (Map<String, String> aLista : lista) {
+						if(!aLista.get(col).equals(""))
+							result.append(aLista.get(col)).append("\r\n");
+					}
+					result.append("\r\n");
+				}
+
+
+			}
+			else {
+				result.append(column).append("\r\n");
+				for (Map<String, String> aLista : lista)
+					for (Map.Entry values : aLista.entrySet()) {
+						if (column.equals(values.getKey()))
+							result.append(values.getValue()).append("\r\n");
+					}
+				result.append("\r\n");
+			}
+
+		}
+
+		return result.toString();
+	}
 }
