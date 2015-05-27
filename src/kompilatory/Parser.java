@@ -30,7 +30,7 @@ public class Parser {
 		Scanner scanner = new Scanner(System.in);
 		String line = scanner.nextLine();
 		System.out.println(line);
-		processCommand(line);
+		System.out.println(processCommand(line));
 		scanner.close();
 	}
 
@@ -46,7 +46,7 @@ public class Parser {
 		try{
 			switch(words[0].toLowerCase()){
 			case "select":
-
+				commandHandler = new SelectHandler();
 				break;
 			case "insert":
 				commandHandler = new InsertHandler();
