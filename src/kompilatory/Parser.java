@@ -56,6 +56,7 @@ public class Parser {
 			case "delete" :
 				break;
 			case "create" :
+				commandHandler = new CreateHandler();
 				break;
 			case "drop" :
 				break;

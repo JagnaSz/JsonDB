@@ -1,4 +1,10 @@
 {
+	"test": [
+		{
+			"test2": ""
+			"test": "",
+		}
+	],
 	"zamowienia": [
 		{
 			"idkompozycji": "buk3",
@@ -60,8 +66,8 @@
 			"idterminu": "ter",
 			"zaplacone": "zap",
 			"uwagi": "uwa",
-			"idzamowienia": "zam"
-			"cena": "cena",
+			"idzamowienia": "zam",
+			"cena": "cena"
 		}
 	],
 	"klienci": [
