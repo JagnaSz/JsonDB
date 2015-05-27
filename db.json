@@ -1,0 +1,91 @@
+{
+	"test": [
+		{
+			"test2": ""
+			"test": "",
+		}
+	],
+	"zamowienia": [
+		{
+			"idkompozycji": "buk3",
+			"idodbiorcy": "aga",
+			"idterminu": "5",
+			"zaplacone": "true",
+			"uwagi": "Odbior osobisty",
+			"idzamowienia": "1",
+			"cena": "25"
+		},
+		{
+			"idkompozycji": "buk5",
+			"idodbiorcy": "piotr",
+			"idterminu": "6",
+			"zaplacone": "true",
+			"uwagi": "Brak uwag",
+			"idzamowienia": "2",
+			"cena": "45"
+		},
+		{
+			"idkompozycji": "",
+			"idodbiorcy": "",
+			"idterminu": "",
+			"zaplacone": "",
+			"uwagi": "",
+			"idzamowienia": "",
+			"cena": ""
+		},
+		{
+			"idkompozycji": "kom",
+			"idodbiorcy": "odb",
+			"idterminu": "ter",
+			"zaplacone": "zap",
+			"uwagi": "uwa",
+			"idzamowienia": "zam",
+			"cena": "cena"
+		},
+		{
+			"idkompozycji": "kom",
+			"idodbiorcy": "odb",
+			"idterminu": "ter",
+			"zaplacone": "zap",
+			"uwagi": "uwa",
+			"idzamowienia": "zam",
+			"cena": ""
+		},
+		{
+			"idkompozycji": "kom",
+			"idodbiorcy": "odb",
+			"idterminu": "ter",
+			"zaplacone": "",
+			"uwagi": "uwa",
+			"idzamowienia": "zam",
+			"cena": "cena"
+		},
+		{
+			"idkompozycji": "kom",
+			"idodbiorcy": "odb",
+			"idterminu": "ter",
+			"zaplacone": "zap",
+			"uwagi": "uwa",
+			"idzamowienia": "zam",
+			"cena": "cena"
+		}
+	],
+	"klienci": [
+		{
+			"telefon": "999777555",
+			"idklienta": "aga",
+			"haslo": "aga",
+			"nazwa": "Agnieszka Sz",
+			"idlokalizacji": "5",
+			"email": "aga@gmail.com"
+		},
+		{
+			"telefon": "555777999",
+			"idklienta": "piotr",
+			"haslo": "piotr",
+			"nazwa": "Piotrek K",
+			"idlokalizacji": "6",
+			"email": "piter@gmail.com"
+		}
+	]
+}
