@@ -38,7 +38,7 @@ public class SelectHandler  extends CommandHandler {
             }
 
             String [] columns = items.toString().split(",");
-            //input = in.next();
+
             if(!input.toLowerCase().equals("from"))
                 throw new SyntaxError(input);
 
@@ -53,8 +53,8 @@ public class SelectHandler  extends CommandHandler {
         } catch (SyntaxError e) {
             throw e;
         }
-//        } catch (SQLException e) {
-//            throw e;}
+       catch (SQLException e) {
+            throw e;}
         finally {
             in.close();
         }
