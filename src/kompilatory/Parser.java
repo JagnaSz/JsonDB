@@ -59,6 +59,7 @@ public class Parser {
 				commandHandler = new CreateHandler();
 				break;
 			case "drop" :
+				commandHandler = new DropHandler();
 				break;
 			default:
 				throw new SyntaxError("Method doesn't exist: " + words[0]);

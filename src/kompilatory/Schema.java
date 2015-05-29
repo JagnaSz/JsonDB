@@ -1,10 +1,7 @@
 package kompilatory;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Schema {
 	private Map<String, List<Map<String, String>>> schema;
@@ -172,5 +169,16 @@ public class Schema {
 		}
 
 		return result.toString();
+	}
+
+	public Boolean drop(String table) throws SQLException {
+
+	if(!schema.containsKey(table))
+			throw new SQLException("table: "+table + " doesn't exist");
+
+		schema.keySet().remove(table);
+
+		return true;
+
 	}
 }
