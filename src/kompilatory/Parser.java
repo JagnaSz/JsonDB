@@ -28,9 +28,18 @@ public class Parser {
 
 	public void readLine() {
 		Scanner scanner = new Scanner(System.in);
-		String line = scanner.nextLine();
-		System.out.println(line);
-		System.out.println(processCommand(line));
+		String line = "";
+		while(!line.equals("q")){
+			System.out.print("> ");
+			line = scanner.nextLine();
+			if("q".equals(line))
+				continue;
+			System.out.println(line);
+			if(!line.isEmpty())
+				System.out.println(processCommand(line));
+
+		}
+		System.out.println("SQL shell terminated");
 		scanner.close();
 	}
 
@@ -51,9 +60,10 @@ public class Parser {
 			case "insert":
 				commandHandler = new InsertHandler();
 			case "update":
-
+				//TODO
 				break;
 			case "delete" :
+				//TODO
 				break;
 			case "create" :
 				commandHandler = new CreateHandler();

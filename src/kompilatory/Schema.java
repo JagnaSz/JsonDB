@@ -1,7 +1,10 @@
 package kompilatory;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Schema {
 	private Map<String, List<Map<String, String>>> schema;
@@ -54,11 +57,11 @@ public class Schema {
 	public void parseValues(StringBuilder builder, List<Map<String, String>> lista) {
 
 		for (int i =0; i < lista.size(); i++) {
-            builder.append("\r\n");
-            builder.append("\t\t{");
-            builder.append("\r\n");
+			builder.append("\r\n");
+			builder.append("\t\t{");
+			builder.append("\r\n");
 			int counter = lista.get(i).size() - 2 ;
-            for (Map.Entry values : lista.get(i).entrySet()) {
+			for (Map.Entry values : lista.get(i).entrySet()) {
 
 				if(!values.getKey().toString().equals("")) {
 					builder.append("\t\t\t");
@@ -71,12 +74,12 @@ public class Schema {
 					counter --;
 				}
 
-            }
+			}
 
-            builder.append("\t\t}");
+			builder.append("\t\t}");
 			if(i != lista.size()-1)
 				builder.append(",");
-        }
+		}
 	}
 
 	public void addTable(StringBuilder key, List<Map<String, String>> array) {
@@ -130,7 +133,7 @@ public class Schema {
 			records.add(record);
 			schema.put(tableName, records);
 		}
-		return false;
+		return true;
 	}	
 
 
@@ -140,40 +143,40 @@ public class Schema {
 
 		StringBuilder result = new StringBuilder();
 
-		List<String> validColumnes = new ArrayList<String>(schema.get(table).get(0).keySet());
-		List<Map<String, String>> lista = schema.get(table);
+		//		List<String> validColumnes = new ArrayList<String>(schema.get(table).get(0).keySet());
+		List<Map<String, String>> records = schema.get(table);
 
-		for(String column: columns){
-			if( (columns.length == 1 )&& column.equals("*")) {
-				for(String col : validColumnes) {
-					result.append(col).append("\r\n");
-					for (Map<String, String> aLista : lista) {
-						if(!aLista.get(col).equals(""))
-							result.append(aLista.get(col)).append("\r\n");
-					}
-					result.append("\r\n");
+		if("*".equals(columns[0]))
+			columns =  schema.get(table).get(0).keySet().toArray(new String [schema.get(table).get(0).keySet().size()]);
+
+		for(String column : columns){
+			if(!column.isEmpty()){
+				result.append(column);
+				appendSpaces(result, column);
+			}
+		}
+		result.append("\n");
+		for(Map<String, String> record : records){
+			for(String column : columns){
+				if(!column.isEmpty()){
+					result.append(record.get(column));
+					appendSpaces(result, record.get(column));
 				}
-
-
 			}
-			else {
-				result.append(column).append("\r\n");
-				for (Map<String, String> aLista : lista)
-					for (Map.Entry values : aLista.entrySet()) {
-						if (column.equals(values.getKey()))
-							result.append(values.getValue()).append("\r\n");
-					}
-				result.append("\r\n");
-			}
-
+			result.append("\n");
 		}
 
 		return result.toString();
 	}
 
+	private void appendSpaces(StringBuilder result, String column) {
+		for(int i=0;i<30 - column.length();i++)
+			result.append(" ");
+	}
+
 	public Boolean drop(String table) throws SQLException {
 
-	if(!schema.containsKey(table))
+		if(!schema.containsKey(table))
 			throw new SQLException("table: "+table + " doesn't exist");
 
 		schema.keySet().remove(table);
