@@ -185,33 +185,39 @@ public class Schema {
 
 	}
 
-	public Boolean update(String table, List<Map<String, String>> lista, Map<String, String> whereItem) throws SQLException {
+	public int update(String table, List<Map<String, String>> lista, Map<String, String> whereItem) throws SQLException {
 
 		if(!schema.containsKey(table))
 			throw new SQLException("table: "+table + " doesn't exist");
 
+
 		List<Map<String, String>> records = schema.get(table);
 		List<Map<String,String>> updatingRecord = new ArrayList<Map<String,String>>();
 
-		for (Map<String,String> searchingMap : records) {
-			for(String key : whereItem.keySet()) {
-				if (searchingMap.containsKey(key) && searchingMap.containsValue(whereItem.get(key)))
-					updatingRecord.add(searchingMap);
+		for (Map<String,String> record : records) {
+			for(String column : whereItem.keySet()) {
+				if(!record.containsKey(column))
+					throw new SQLException("Column " + column + " doesn't exist");
+//				if(!record.get(column).equals(whereItem.get(column)))
+//					return 0;
 
-
+				if (record.containsKey(column) && record.containsValue(whereItem.get(column)))
+					updatingRecord.add(record);
 			}
 		}
-
 
 		for(Map<String,String> record: updatingRecord) {
 			for(Map<String, String> map : lista) {
-				for(String key: map.keySet())
+				for(String key: map.keySet()) {
+					if(!record.containsKey(key))
+						throw new SQLException("Column " + key + " doesn't exist");
 					if (record.containsKey(key))
 						record.put(key, map.get(key));
+				}
 			}
 
 		}
 
-		return true;
+		return updatingRecord.size();
 	}
 }

@@ -34,7 +34,7 @@ public class Parser {
 			line = scanner.nextLine();
 			if("q".equals(line))
 				continue;
-			System.out.println(line);
+
 			if(!line.isEmpty())
 				System.out.println(processCommand(line));
 

@@ -69,17 +69,9 @@ public class UpdateHandler extends CommandHandler {
 
             Map<String,String> whereItem= new HashMap<String,String>();
             whereItem.put(whereSubstring[0], whereSubstring[1]);
-
-
-
-            Boolean isUpdated = schema.update(table,lista,whereItem);
-
-            if(isUpdated)
-                result = "Updating was successful";
-            else
-                result = "Updating wasn't successful";
-
-
+            
+            int updatedCount = schema.update(table,lista,whereItem);
+            result = "Update " + updatedCount + " rows";
 
         }
         catch (SyntaxError e) {
