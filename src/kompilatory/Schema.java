@@ -194,18 +194,21 @@ public class Schema {
 		List<Map<String,String>> updatingRecord = new ArrayList<Map<String,String>>();
 
 		for (Map<String,String> searchingMap : records) {
-			for(String key : whereItem.keySet())
-				if(searchingMap.containsKey(key) && searchingMap.containsValue(whereItem.get(key)))
+			for(String key : whereItem.keySet()) {
+				if (searchingMap.containsKey(key) && searchingMap.containsValue(whereItem.get(key)))
 					updatingRecord.add(searchingMap);
+				else
+					return false;
 
+			}
 		}
 
 
 		for(Map<String,String> record: updatingRecord) {
 			for(Map<String, String> map : lista) {
 				for(String key: map.keySet())
-					if(record.containsKey(key))
-						record.put(key,map.get(key));
+					if (record.containsKey(key) && record.containsValue(map.get(key)))
+						record.put(key, map.get(key));
 			}
 
 		}
