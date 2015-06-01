@@ -60,7 +60,7 @@ public class Parser {
 			case "insert":
 				commandHandler = new InsertHandler();
 			case "update":
-				//TODO
+				commandHandler = new UpdateHandler();
 				break;
 			case "delete" :
 				//TODO

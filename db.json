@@ -5,9 +5,9 @@
 			"idodbiorcy": "aga",
 			"idterminu": "5",
 			"zaplacone": "true",
-			"uwagi": "Odbior osobisty",
+			"uwagi": "cos",
 			"idzamowienia": "1",
-			"cena": "25"
+			"cena": "50"
 		},
 		{
 			"idkompozycji": "buk5",
@@ -32,36 +32,36 @@
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "zap",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "cena"
+			"cena": "100"
 		},
 		{
 			"idkompozycji": "kom",
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "zap",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": ""
+			"cena": "100"
 		},
 		{
 			"idkompozycji": "kom",
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "cena"
+			"cena": "100"
 		},
 		{
 			"idkompozycji": "kom",
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "zap",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "cena"
+			"cena": "100"
 		}
 	],
 	"klienci": [
