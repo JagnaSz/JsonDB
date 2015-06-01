@@ -197,8 +197,7 @@ public class Schema {
 			for(String key : whereItem.keySet()) {
 				if (searchingMap.containsKey(key) && searchingMap.containsValue(whereItem.get(key)))
 					updatingRecord.add(searchingMap);
-				else
-					return false;
+
 
 			}
 		}
@@ -207,7 +206,7 @@ public class Schema {
 		for(Map<String,String> record: updatingRecord) {
 			for(Map<String, String> map : lista) {
 				for(String key: map.keySet())
-					if (record.containsKey(key) && record.containsValue(map.get(key)))
+					if (record.containsKey(key))
 						record.put(key, map.get(key));
 			}
 

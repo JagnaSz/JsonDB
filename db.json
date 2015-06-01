@@ -34,7 +34,7 @@
 			"zaplacone": "zap",
 			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "100"
+			"cena": "200"
 		},
 		{
 			"idkompozycji": "kom",
@@ -43,7 +43,7 @@
 			"zaplacone": "zap",
 			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "100"
+			"cena": "200"
 		},
 		{
 			"idkompozycji": "kom",
@@ -52,7 +52,7 @@
 			"zaplacone": "",
 			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "100"
+			"cena": "200"
 		},
 		{
 			"idkompozycji": "kom",
@@ -61,14 +61,14 @@
 			"zaplacone": "zap",
 			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "100"
+			"cena": "200"
 		}
 	],
 	"klienci": [
 		{
 			"telefon": "111222333",
 			"idklienta": "aga",
-			"haslo": "aga",
+			"haslo": "3gcdet65",
 			"nazwa": "Agnieszka Sz",
 			"idlokalizacji": "5",
 			"email": "aga@gmail.com"
