@@ -150,6 +150,8 @@ public class Schema {
 			columns =  schema.get(table).get(0).keySet().toArray(new String [schema.get(table).get(0).keySet().size()]);
 
 		for(String column : columns){
+			if(!schema.get(table).get(0).keySet().contains(column))
+				throw new SQLException("column "+ column + " doesn't exist");
 			if(!column.isEmpty()){
 				result.append(column);
 				appendSpaces(result, column);
@@ -198,8 +200,6 @@ public class Schema {
 			for(String column : whereItem.keySet()) {
 				if(!record.containsKey(column))
 					throw new SQLException("Column " + column + " doesn't exist");
-//				if(!record.get(column).equals(whereItem.get(column)))
-//					return 0;
 
 				if (record.containsKey(column) && record.containsValue(whereItem.get(column)))
 					updatingRecord.add(record);
