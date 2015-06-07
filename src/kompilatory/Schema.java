@@ -1,10 +1,7 @@
 package kompilatory;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Schema {
 	private Map<String, List<Map<String, String>>> schema;
@@ -57,10 +54,11 @@ public class Schema {
 	public void parseValues(StringBuilder builder, List<Map<String, String>> lista) {
 
 		for (int i =0; i < lista.size(); i++) {
+			int counter = lista.get(i).size() - 1 ;
 			builder.append("\r\n");
 			builder.append("\t\t{");
 			builder.append("\r\n");
-			int counter = lista.get(i).size() - 2 ;
+
 			for (Map.Entry values : lista.get(i).entrySet()) {
 
 				if(!values.getKey().toString().equals("")) {
@@ -73,6 +71,8 @@ public class Schema {
 					builder.append("\r\n");
 					counter --;
 				}
+				else
+					counter --;
 
 			}
 
@@ -126,9 +126,12 @@ public class Schema {
 		if(schema.containsKey(tableName))
 			throw new SQLException("table " + tableName + " alreadyExist");
 		else{
-			Map<String,String> record = new HashMap<String, String>();
-			for(int i=0;i<columnes.length;i++)
-				record.put(columnes[i], "");
+			Map<String,String> record = new LinkedHashMap<String, String>();
+			for(int i=0;i<columnes.length;i++) {
+				String [] splitedColumnes = columnes[i].split("=");
+				record.put(splitedColumnes[0], splitedColumnes[1]);
+			}
+
 			List<Map<String,String> > records = new ArrayList<Map<String,String>>();
 			records.add(record);
 			schema.put(tableName, records);
@@ -143,13 +146,14 @@ public class Schema {
 
 		StringBuilder result = new StringBuilder();
 
-		//		List<String> validColumnes = new ArrayList<String>(schema.get(table).get(0).keySet());
 		List<Map<String, String>> records = schema.get(table);
 
 		if("*".equals(columns[0]))
 			columns =  schema.get(table).get(0).keySet().toArray(new String [schema.get(table).get(0).keySet().size()]);
 
 		for(String column : columns){
+			if(!schema.get(table).get(0).keySet().contains(column))
+				throw new SQLException("column "+ column + " doesn't exist");
 			if(!column.isEmpty()){
 				result.append(column);
 				appendSpaces(result, column);
@@ -183,5 +187,39 @@ public class Schema {
 
 		return true;
 
+	}
+
+	public int update(String table, List<Map<String, String>> newValues, Map<String, String> whereItems) throws SQLException {
+
+		if(!schema.containsKey(table))
+			throw new SQLException("table: "+table + " doesn't exist");
+
+
+		List<Map<String, String>> records = schema.get(table);
+		List<Map<String,String>> updatedRecords = new ArrayList<Map<String,String>>();
+
+		for (Map<String,String> record : records) {
+			for(String column : whereItems.keySet()) {
+				if(!record.containsKey(column))
+					throw new SQLException("Column " + column + " doesn't exist");
+
+				if (record.containsKey(column) && record.containsValue(whereItems.get(column)))
+					updatedRecords.add(record);
+			}
+		}
+
+		for(Map<String,String> record: updatedRecords) {
+			for(Map<String, String> map : newValues) {
+				for(String key: map.keySet()) {
+					if(!record.containsKey(key))
+						throw new SQLException("Column " + key + " doesn't exist");
+					if (record.containsKey(key))
+						record.put(key, map.get(key));
+				}
+			}
+
+		}
+
+		return updatedRecords.size();
 	}
 }

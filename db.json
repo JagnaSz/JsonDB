@@ -5,9 +5,9 @@
 			"idodbiorcy": "aga",
 			"idterminu": "5",
 			"zaplacone": "true",
-			"uwagi": "Odbior osobisty",
+			"uwagi": "cos",
 			"idzamowienia": "1",
-			"cena": "25"
+			"cena": "50"
 		},
 		{
 			"idkompozycji": "buk5",
@@ -32,43 +32,43 @@
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "zap",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "cena"
+			"cena": "200"
 		},
 		{
 			"idkompozycji": "kom",
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "zap",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": ""
+			"cena": "200"
 		},
 		{
 			"idkompozycji": "kom",
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "cena"
+			"cena": "200"
 		},
 		{
 			"idkompozycji": "kom",
 			"idodbiorcy": "odb",
 			"idterminu": "ter",
 			"zaplacone": "zap",
-			"uwagi": "uwa",
+			"uwagi": "cos",
 			"idzamowienia": "zam",
-			"cena": "cena"
+			"cena": "200"
 		}
 	],
 	"klienci": [
 		{
-			"telefon": "999777555",
+			"telefon": "111222333",
 			"idklienta": "aga",
-			"haslo": "aga",
+			"haslo": "3gcdet65",
 			"nazwa": "Agnieszka Sz",
 			"idlokalizacji": "5",
 			"email": "aga@gmail.com"
