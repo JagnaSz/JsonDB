@@ -51,7 +51,8 @@ public class SelectHandler  extends CommandHandler {
             throw e;
         }
        catch (SQLException e) {
-            throw e;}
+            throw e;
+       }
         finally {
             in.close();
         }

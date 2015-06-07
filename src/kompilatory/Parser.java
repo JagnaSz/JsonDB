@@ -34,7 +34,7 @@ public class Parser {
 			line = scanner.nextLine();
 			if("q".equals(line))
 				continue;
-			System.out.println(line);
+
 			if(!line.isEmpty())
 				System.out.println(processCommand(line));
 
@@ -60,7 +60,7 @@ public class Parser {
 			case "insert":
 				commandHandler = new InsertHandler();
 			case "update":
-				//TODO
+				commandHandler = new UpdateHandler();
 				break;
 			case "delete" :
 				//TODO
