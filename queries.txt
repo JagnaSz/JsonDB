@@ -1,0 +1,2 @@
+insert into test values ("1","2","3","4");
+create table test (one,two,three,four);

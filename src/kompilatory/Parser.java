@@ -59,6 +59,7 @@ public class Parser {
 				break;
 			case "insert":
 				commandHandler = new InsertHandler();
+				break;
 			case "update":
 				commandHandler = new UpdateHandler();
 				break;

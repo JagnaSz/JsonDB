@@ -102,10 +102,13 @@ public class Schema {
 		if(columns == null){
 			columns = new ArrayList<String>(schema.get(table).get(0).keySet());		
 		}		
-		Map<String, String> record = new HashMap<String, String>();
+		Map<String, String> record = new LinkedHashMap<String, String>();
 		for(int i=0;i<validColumnes.size();i++){
 			if(validColumnes.get(i).isEmpty())
 				validColumnes.remove(i);
+			if(columns.get(i).isEmpty())
+				columns.remove(i);
+
 			if(columns.contains(validColumnes.get(i)))
 				record.put(validColumnes.get(i), values.get(columns.indexOf(validColumnes.get(i))));
 			else
@@ -128,8 +131,7 @@ public class Schema {
 		else{
 			Map<String,String> record = new LinkedHashMap<String, String>();
 			for(int i=0;i<columnes.length;i++) {
-				String [] splitedColumnes = columnes[i].split("=");
-				record.put(splitedColumnes[0], splitedColumnes[1]);
+				record.put(columnes[i],"");
 			}
 
 			List<Map<String,String> > records = new ArrayList<Map<String,String>>();
