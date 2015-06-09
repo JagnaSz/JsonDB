@@ -1,4 +1,4 @@
-package kompilatory.skaner;
+package kompilatory;
 
 import java_cup.runtime.Symbol;
 import kompilatory.parser.*;
@@ -22,11 +22,11 @@ import kompilatory.parser.*;
     StringBuffer string = new StringBuffer();
 
     private Symbol symbol(int type) {
-    	return new Symbol(type, yyline, yycolumn);
+    	return new Symbol(type, yyline+1, yycolumn);
     }
 
     private Symbol symbol(int type, Object value) {
-        return new Symbol(type, yyline, yycolumn, value);
+        return new Symbol(type, yyline+1, yycolumn, value);
     }
 
 %}
@@ -38,7 +38,7 @@ UNESCAPED_CH = [^\"\\]
 FALLBACK_CH = .
 eol = [\r|\n|\r\n]
 otherSigns  =   (\"|\#|\@|\$|\^|\_|\&|\+|\=|\||\<|\>|\*)
-word =(\"(( [a-zA-Z0-9] )+ | "(" | ")" | {otherSigns})\")
+word =(\"( [a-zA-Z0-9]| "(" | ")" | {otherSigns} | \. | \s)* \")
 
 %%
 <YYINITIAL>{
@@ -59,4 +59,9 @@ word =(\"(( [a-zA-Z0-9] )+ | "(" | ")" | {otherSigns})\")
 	{WS}+ {}
 	
 }
+
+/* error fallback */
+[^]                             { throw new Error("line:" + yyline + " column:" + yycolumn + "Illegal character <"+
+                                   yytext() +">"); }
+<<EOF>>                          { return null; }
 

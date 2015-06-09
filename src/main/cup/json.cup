@@ -1,25 +1,51 @@
 package kompilatory.parser;
 
 import java_cup.runtime.*;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 /* Terminals (tokens returned by the scanner). */
 terminal String LEFT_BRACKET, RIGHT_BRACKET, LEFT_PARENTHESIS, RIGHT_PARENTHESIS;
-terminal String LEFT_SQ_BRACKET, RIGHT_SQ_BRACKET, COLON, COMA, BOOLEAN;
-terminal String INTEGER, DOUBLE, WORD, NULL;
+terminal String LEFT_SQ_BRACKET, RIGHT_SQ_BRACKET, COLON, COMA;
+terminal Boolean BOOLEAN;
+terminal Integer INTEGER;
+terminal Double DOUBLE;
+terminal String WORD;
+terminal String NULL;
 
-non terminal String object;
-non terminal String array;
+non terminal JSONValue value;
+non terminal JSONObject object;
+non terminal JSONArray array;
+non terminal JSONObject top;
+non terminal JSONPair pair;
+non terminal List<JSONPair> members;
+non terminal List<JSONValue> elements;
 
-object ::=  LEFT_BRACKET WORD:w1 COLON WORD:w2 COMA object:o RIGHT_BRACKET  {: System.out.println("{" + w1+ " : " + w2 + "," + o + "}");:}
-			| LEFT_BRACKET WORD:w1 COLON WORD:w2 RIGHT_BRACKET  {: System.out.println("{" + w1+ " : " + w2 + "}");:}
-			| LEFT_BRACKET WORD:w COLON INTEGER:i RIGHT_BRACKET	 {: System.out.println("{" + w+ " : " + i + "}");:}
-			| LEFT_BRACKET WORD:w COLON DOUBLE:d RIGHT_BRACKET {: System.out.println("{" + w+ " : " + d + "}");:}
-			| LEFT_BRACKET WORD:w COLON BOOLEAN:b RIGHT_BRACKET {: System.out.println("{" + w+ " : " + b + "}");:}
-			| LEFT_BRACKET WORD:w COLON NULL RIGHT_BRACKET  {: System.out.println("{" + w+ " : null }");:}
-		    | LEFT_BRACKET WORD:w COLON array:a RIGHT_BRACKET  {: System.out.println("{" + w + " : " + a + "}");:}
-		    ;
+top ::= object:o 					  				 {: RESULT = o; :}
+		;
 
-array ::= LEFT_SQ_BRACKET object:o RIGHT_SQ_BRACKET {: System.out.println("[ " + o + " ]");:}
-;
+object ::= LEFT_BRACKET members:m RIGHT_BRACKET 	 {: RESULT = new JSONObject(m); :}
+		   ;
+	
+members ::= pair:p 					  				 {: RESULT = add(new ArrayList<JSONPair>(), p); :}
+			| members:m COMA pair:p	  				 {: RESULT = add(m, p); :}
+			;
+	
+pair ::= WORD:w COLON value:v		  				 {: RESULT = new JSONPair(w, v); :}
+		 ; 
+
+array ::= LEFT_SQ_BRACKET elements:e RIGHT_SQ_BRACKET {: RESULT = new JSONArray(e); :}
+		 ;
+
+elements ::= value:v						 {: RESULT = add(new ArrayList<JSONValue>(), v); :}
+			| elements:e COMA value:v  {: RESULT = add(e, v); :}
+			;
+			
+value ::= INTEGER:i  	{: RESULT = new JSONValue(Integer.valueOf(i)); :}
+		| NULL 			{: RESULT = new JSONValue("null"); :}
+		| DOUBLE:d 		{: RESULT =  new JSONValue(Double.valueOf(d)); :}
+		| WORD:w 		{: RESULT =  new JSONValue(w); :}
+		| BOOLEAN:b 	{: RESULT =  new JSONValue(Boolean.valueOf(b)); :}
+		| array:a 		{: RESULT = new JSONValue(a); :}
+		| object:o 		{: RESULT = new JSONValue(o); :}
+		;

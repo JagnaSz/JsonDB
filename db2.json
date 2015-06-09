@@ -1,1 +1,27 @@
-{"test" : "test"}
+{
+	"test": [
+		{
+			"dwa":null,
+			"raz":null
+		},
+		{
+			"dwa":null,
+			"raz":1
+		}
+	],
+	"tabela": [
+		{
+			"double":2.5,
+			"slowo":null,
+			"word":"slowo",
+			"boolean":true,
+			"integer":2
+		}
+	],
+	"test2": [
+		{
+			"uno":null,
+			"duo":null
+		}
+	]
+}

@@ -1,7 +1,11 @@
 package kompilatory;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Schema {
 	private Map<String, List<Map<String, String>>> schema;
@@ -30,7 +34,7 @@ public class Schema {
 
 			String mapKey = map.getKey().toString();
 
-			builder.append("\t\"").append(map.getKey().toString()).append("\": ");
+			builder.append("\t\"").append(map.getKey().toString().replace("\"", "")).append("\": ");
 			builder.append("[");
 
 			List<Map<String, String>> lista = schema.get(mapKey);
@@ -63,8 +67,10 @@ public class Schema {
 
 				if(!values.getKey().toString().equals("")) {
 					builder.append("\t\t\t");
-					builder.append("\"").append(values.getKey().toString()).append("\": ").append("\"").append(values.getValue().toString()).append("\"");
-
+//					builder.append(values.getKey().toString()).append(": ").append(values.getValue().toString().isEmpty() ? "null" : values.getValue().toString());
+					builder.append(values.getKey().toString().isEmpty() ? "null" : values.getKey().toString());
+					builder.append(":");
+					builder.append(values.getValue().toString().isEmpty() ? "null" : values.getValue().toString());
 					if(counter != 0)
 						builder.append(",");
 
@@ -106,9 +112,11 @@ public class Schema {
 		for(int i=0;i<validColumnes.size();i++){
 			if(validColumnes.get(i).isEmpty())
 				validColumnes.remove(i);
+		}
+		for(int i=0;i<columns.size();i++)
 			if(columns.get(i).isEmpty())
 				columns.remove(i);
-
+		for(int i=0;i<validColumnes.size();i++){
 			if(columns.contains(validColumnes.get(i)))
 				record.put(validColumnes.get(i), values.get(columns.indexOf(validColumnes.get(i))));
 			else

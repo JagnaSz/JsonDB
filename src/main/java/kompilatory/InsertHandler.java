@@ -80,20 +80,23 @@ public class InsertHandler extends CommandHandler {
 	 */
 	private List<String> createList(String input) {
 		List<String> result = new ArrayList<String>();
-		for(int i=0;i<input.length();i++){
-			StringBuilder word = new StringBuilder();
-			if(input.charAt(i) == '"'){
-				i++;
-				word.append(input.charAt(i));	
-				i++;
-				while(input.charAt(i) != '"'){
-					word.append(input.charAt(i));
-					i++;
-				}
-				result.add(word.toString());
-				i++;	
-			}
-		}
+//		for(int i=0;i<input.length();i++){
+//			StringBuilder word = new StringBuilder();
+//			if(input.charAt(i) == '"'){
+//				i++;
+//				word.append(input.charAt(i));	
+//				i++;
+//				while(input.charAt(i) != '"'){
+//					word.append(input.charAt(i));
+//					i++;
+//				}
+//				result.add(word.toString());
+//				i++;	
+//			}
+//		}
+		String [] splited = input.split(",");
+		for(int i=0;i<splited.length;i++)
+			result.add(splited[i].replace("\"", ""));
 		return result;
 	}
 
