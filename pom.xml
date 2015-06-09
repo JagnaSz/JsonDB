@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--<parent>-->
+    <!--<groupId>de.flex.examples</groupId>-->
+    <!--<artifactId>parent</artifactId>-->
+    <!--<version>1</version>-->
+    <!--</parent>-->
+    <groupId>com.test.json</groupId>
+    <artifactId>testJson</artifactId>
+    <version>0.1</version>
+    <description></description>
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <url>http://repo.spring.io/libs-milestone/</url>
+        </repository>
+    </repositories>
+  <pluginRepositories>
+        <pluginRepository>
+            <id>emustudio-repository</id>
+            <name>emuStudio Repository</name>
+            <url>http://emustudio.sf.net/repository/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories> 
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>de.sciss</groupId>
+            <artifactId>jsyntaxpane</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>nz.ac.waikato.cms.weka.thirdparty</groupId>
+            <artifactId>java-cup-11b-runtime</artifactId>
+            <version>2015.03.26</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>edu.princeton.cup</groupId>-->
+            <!--<artifactId>java-cup</artifactId>-->
+            <!--<version>10k</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>net.sourceforge.czt</groupId>-->
+            <!--<artifactId>maven-cup-plugin</artifactId>-->
+            <!--<version>1.6.4</version>-->
+            <!--<type>maven-plugin</type>-->
+        <!--</dependency>-->
+
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>de.jflex</groupId>
+                <artifactId>jflex-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                   
+                </executions>
+            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>net.sourceforge.czt</groupId>-->
+                <!--<artifactId>maven-cup-plugin</artifactId>-->
+                <!--<version>1.6.4</version>-->
+                <!--&lt;!&ndash;<executions>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<goal>generate</goal>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+                <!--&lt;!&ndash;</executions>&ndash;&gt;-->
+                <!--<configuration>-->
+
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>edu.tum.cs</groupId>
+                <artifactId>cup-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <packageName>parser</packageName>
+                    <cupDefinition>src/main/cup/json.cup</cupDefinition>
+                    <className>JSONParser</className>            
+                </configuration>
+            </plugin>
+        </plugins>
+      </build>
+
+
+</project>

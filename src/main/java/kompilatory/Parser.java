@@ -3,6 +3,12 @@ package kompilatory;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import kompilatory.CommandHandler;
+import kompilatory.CreateHandler;
+import kompilatory.DropHandler;
+import kompilatory.InsertHandler;
+import kompilatory.SelectHandler;
+import kompilatory.UpdateHandler;
 import kompilatory.exception.SyntaxError;
 
 public class Parser {
