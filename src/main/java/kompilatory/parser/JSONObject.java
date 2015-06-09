@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class JSONObject extends HashMap<String, JSONValue> implements Map<String, JSONValue> {
+public class JSONObject extends HashMap<String, JSONValue> implements
+		Map<String, JSONValue> {
 
 	/**
 	 * 
@@ -27,31 +28,31 @@ public class JSONObject extends HashMap<String, JSONValue> implements Map<String
 	}
 
 	public JSONObject(List<JSONPair> pairs) {
-		for(JSONPair pair : pairs){
+		for (JSONPair pair : pairs) {
 			this.put(pair.getKey(), pair.getValue());
 		}
 	}
 
-	public static String toJSONString(Map map){
+	public static String toJSONString(Map map) {
 		StringBuilder sb = new StringBuilder();
-		if(map == null){
+		if (map == null) {
 			sb.append("null");
 			return sb.toString();
 		}
 
 		boolean first = true;
-		Iterator iter=map.entrySet().iterator();
+		Iterator iter = map.entrySet().iterator();
 
 		sb.append("{");
-		while(iter.hasNext()){
-			if(first)
+		while (iter.hasNext()) {
+			if (first)
 				first = false;
 			else
 				sb.append(",");
-			Map.Entry entry=(Map.Entry)iter.next();
-//			sb.append("\"");
+			Map.Entry entry = (Map.Entry) iter.next();
+			// sb.append("\"");
 			sb.append(String.valueOf(entry.getKey()));
-//			sb.append("\"");
+			// sb.append("\"");
 			sb.append(":");
 			sb.append(JSONValue.toJSONString(entry.getValue()));
 		}
@@ -60,18 +61,18 @@ public class JSONObject extends HashMap<String, JSONValue> implements Map<String
 		return sb.toString();
 	}
 
-	public String toJSONString(){
+	public String toJSONString() {
 		return toJSONString(this);
 	}
 
-	public String toString(){
+	public String toString() {
 		return toJSONString();
 	}
 
-	public static String toString(String key,Object value){
+	public static String toString(String key, Object value) {
 		StringBuffer sb = new StringBuffer();
 		sb.append('\"');
-		if(key == null)
+		if (key == null)
 			return "null";
 		sb.append('\"').append(':');
 

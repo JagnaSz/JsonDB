@@ -9,81 +9,77 @@ import java.util.*;
  * Created by agnieszkaszczurek on 01.06.15.
  */
 public class UpdateHandler extends CommandHandler {
-    @Override
-    public String process(String line) throws SyntaxError, SQLException {
+	@Override
+	public String process(String line) throws SyntaxError, SQLException {
 
-        Scanner in = new Scanner(line);
-        String table;
-        String input;
-        String result;
-        StringBuilder items = new StringBuilder();
-        StringBuilder whereItems = new StringBuilder();
+		Scanner in = new Scanner(line);
+		String table;
+		String input;
+		String result;
+		StringBuilder items = new StringBuilder();
+		StringBuilder whereItems = new StringBuilder();
 
-        try {
-            input = in.next();
-            if(!input.toLowerCase().equals("update"))
-                throw new SyntaxError(input);
+		try {
+			input = in.next();
+			if (!input.toLowerCase().equals("update"))
+				throw new SyntaxError(input);
 
+			table = in.next();
 
-            table = in.next();
+			input = in.next();
+			if (!input.toLowerCase().equals("set"))
+				throw new SyntaxError(input);
 
-            input = in.next();
-            if(!input.toLowerCase().equals("set"))
-                throw new SyntaxError(input);
+			while (in.hasNext()) {
+				input = in.next();
+				if (!"where".equals(input.toLowerCase()))
+					items.append(input);
+				else
+					break;
+			}
 
-            while (in.hasNext()){
-                input =  in.next();
-                if(!"where".equals(input.toLowerCase()))
-                    items.append(input);
-                else
-                    break;
-            }
+			if (!input.toLowerCase().equals("where"))
+				throw new SyntaxError(input);
 
-            if(!input.toLowerCase().equals("where"))
-                throw new SyntaxError(input);
+			List<Map<String, String>> lista = new ArrayList<Map<String, String>>();
 
-            List<Map<String, String>> lista = new ArrayList<Map<String,String>>();
+			String[] itemsToUpdate = items.toString().split(",");
 
+			for (String itemToUpdate : itemsToUpdate) {
+				String[] values = itemToUpdate.split("=");
+				Map<String, String> map = new HashMap<String, String>();
+				map.put(values[0], values[1]);
 
-            String [] itemsToUpdate = items.toString().split(",");
+				lista.add(map);
 
-            for(String itemToUpdate : itemsToUpdate){
-                String [] values = itemToUpdate.split("=");
-                Map<String,String> map = new HashMap<String,String>();
-                map.put(values[0],values[1]);
+			}
 
-                lista.add(map);
+			while (in.hasNext()) {
+				input = in.next();
+				if (!";".equals(input.toLowerCase()))
+					whereItems.append(input);
+				else
+					break;
+			}
 
-            }
+			String res = whereItems.toString().substring(0,
+					whereItems.toString().length() - 1);
+			String[] whereSubstring = res.split("=");
 
-            while (in.hasNext()){
-                input =  in.next();
-                if(!";".equals(input.toLowerCase()))
-                    whereItems.append(input);
-                else
-                    break;
-            }
+			Map<String, String> whereItem = new HashMap<String, String>();
+			whereItem.put(whereSubstring[0], whereSubstring[1]);
 
-           String res = whereItems.toString().substring(0,whereItems.toString().length()-1);
-            String [] whereSubstring = res.split("=");
+			int updatedCount = schema.update(table, lista, whereItem);
+			result = "Update " + updatedCount + " rows";
 
-            Map<String,String> whereItem= new HashMap<String,String>();
-            whereItem.put(whereSubstring[0], whereSubstring[1]);
-            
-            int updatedCount = schema.update(table,lista,whereItem);
-            result = "Update " + updatedCount + " rows";
+		} catch (SyntaxError e) {
+			throw e;
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			in.close();
+		}
 
-        }
-        catch (SyntaxError e) {
-            throw e;
-        }
-        catch (SQLException e) {
-            throw e;
-        }
-        finally {
-            in.close();
-        }
-
-        return result;
-    }
+		return result;
+	}
 }

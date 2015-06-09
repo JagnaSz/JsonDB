@@ -23,7 +23,7 @@ public class Parser {
 		this.commandHandler = commandHandler;
 	}
 
-	public Parser(){
+	public Parser() {
 		try {
 			CommandHandler.loadSchema();
 		} catch (FileNotFoundException e) {
@@ -35,13 +35,13 @@ public class Parser {
 	public void readLine() {
 		Scanner scanner = new Scanner(System.in);
 		String line = "";
-		while(!line.equals("q")){
+		while (!line.equals("q")) {
 			System.out.print("> ");
 			line = scanner.nextLine();
-			if("q".equals(line))
+			if ("q".equals(line))
 				continue;
 
-			if(!line.isEmpty())
+			if (!line.isEmpty())
 				System.out.println(processCommand(line));
 
 		}
@@ -51,15 +51,16 @@ public class Parser {
 
 	/**
 	 * process single command
+	 * 
 	 * @param line
 	 * @return
 	 */
-	public String processCommand(String line){
+	public String processCommand(String line) {
 		String result = null;
-		String [] words = line.split(" ");
+		String[] words = line.split(" ");
 
-		try{
-			switch(words[0].toLowerCase()){
+		try {
+			switch (words[0].toLowerCase()) {
 			case "select":
 				commandHandler = new SelectHandler();
 				break;
@@ -69,13 +70,13 @@ public class Parser {
 			case "update":
 				commandHandler = new UpdateHandler();
 				break;
-			case "delete" :
-				//TODO
+			case "delete":
+				// TODO
 				break;
-			case "create" :
+			case "create":
 				commandHandler = new CreateHandler();
 				break;
-			case "drop" :
+			case "drop":
 				commandHandler = new DropHandler();
 				break;
 			default:
@@ -84,8 +85,7 @@ public class Parser {
 
 			result = commandHandler.process(line);
 			CommandHandler.saveSchema();
-		}
-		catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;

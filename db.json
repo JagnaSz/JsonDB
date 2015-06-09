@@ -1,0 +1,58 @@
+{
+	"zamowienia" : [
+		{
+			"uwagi":"Odbior osobisty",
+			"idodbiorcy":"aga",
+			"idterminu":"5",
+			"idzamowienia":"1",
+			"zaplacone":"true",
+			"cena":"25",
+			"idkompozycji":"buk3"
+		},
+		{
+			"uwagi":"Brak uwag",
+			"idodbiorcy":"piotr",
+			"idterminu":"6",
+			"idzamowienia":"2",
+			"zaplacone":"true",
+			"cena":"45",
+			"idkompozycji":"buk5"
+		},
+		{
+			"uwagi":"uwa",
+			"idodbiorcy":"odb",
+			"idterminu":"ter",
+			"idzamowienia":"zam",
+			"zaplacone":"zap",
+			"cena":"cena",
+			"idkompozycji":"kom"
+		},
+		{
+			"uwagi":"uwa",
+			"idodbiorcy":"odb",
+			"idterminu":"ter",
+			"idzamowienia":"zam",
+			"zaplacone":"zap",
+			"cena":"",
+			"idkompozycji":"kom"
+		},
+		{
+			"uwagi":"uwa",
+			"idodbiorcy":"odb",
+			"idterminu":"ter",
+			"idzamowienia":"zam",
+			"zaplacone":"",
+			"cena":"cena",
+			"idkompozycji":"kom"
+		},
+		{
+			"uwagi":"uwa",
+			"idodbiorcy":"odb",
+			"idterminu":"ter",
+			"idzamowienia":"zam",
+			"zaplacone":"zap",
+			"cena":"cena",
+			"idkompozycji":"kom"
+		}
+	]
+}
